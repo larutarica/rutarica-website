@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="RutaRica — Travel Bold. Build Wealth. Vive Rico. The bilingual destination for ambitious Latino professionals." />
+  <meta property="og:title" content="RutaRica — Travel Bold. Build Wealth. Vive Rico." />
+  <meta property="og:description" content="The go-to bilingual destination for Latino professionals who refuse to choose between grinding hard and living well." />
+  <title>RutaRica — Travel Bold. Build Wealth. Vive Rico.</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Barlow+Condensed:wght@400;600;700;800&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --navy: #1A1A2E;
+      --navy-light: #252545;
+      --red: #C0392B;
+      --red-light: #E74C3C;
+      --gold: #F39C12;
+      --white: #FFFFFF;
+      --off-white: #F8F6F2;
+      --gray: #8A8A9A;
+      --border: rgba(255,255,255,0.08);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Barlow', sans-serif; background: var(--navy); color: var(--white); overflow-x: hidden; }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      padding: 0 40px; display: flex; align-items: center; justify-content: space-between;
+      height: 72px; background: rgba(26,26,46,0.97); backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border); transition: height 0.3s;
+    }
+    nav.scrolled { height: 60px; }
+    .nav-logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+    .nav-rr {
+      width: 44px; height: 44px; border-radius: 50%;
+      border: 2px solid var(--gold); overflow: hidden; flex-shrink: 0;
+      background: var(--navy);
+    }
+    .nav-brand { font-family: 'Barlow Condensed', sans-serif; font-size: 22px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--white); }
+    .nav-links { display: flex; align-items: center; gap: 28px; list-style: none; }
+    .nav-links a { font-family: 'Barlow Condensed', sans-serif; font-size: 13px; font-weight: 600; letter-spacing: 2px; color: var(--gray); text-decoration: none; text-transform: uppercase; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--gold); }
+    .nav-cta { background: var(--red) !important; color: var(--white) !important; padding: 8px 20px; }
+    .nav-cta:hover { background: var(--red-light) !important; }
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+    .hamburger span { width: 24px; height: 2px; background: var(--white); display: block; }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh; display: flex; flex-direction: column; justify-content: center;
+      padding: 120px 40px 100px; position: relative; overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse at 70% 30%, rgba(192,57,43,0.15) 0%, transparent 60%),
+                  radial-gradient(ellipse at 20% 80%, rgba(243,156,18,0.08) 0%, transparent 50%),
+                  linear-gradient(135deg, #1A1A2E 0%, #0D0D1F 100%);
+    }
+    .hero-grid {
+      position: absolute; inset: 0; opacity: 0.03;
+      background-image: linear-gradient(rgba(255,255,255,0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.5) 1px, transparent 1px);
+      background-size: 60px 60px;
+    }
+    .hero-content { position: relative; max-width: 900px; }
+    .eyebrow {
+      font-family: 'Barlow Condensed', sans-serif; font-size: 12px; font-weight: 700;
+      letter-spacing: 4px; color: var(--gold); text-transform: uppercase; margin-bottom: 24px;
+      display: flex; align-items: center; gap: 12px; opacity: 0; animation: fadeUp 0.8s 0.2s forwards;
+    }
+    .eyebrow::before { content: ''; width: 40px; height: 1px; background: var(--gold); }
+    .hero-title {
+      font-family: 'Playfair Display', serif; font-size: clamp(52px, 8vw, 96px);
+      font-weight: 900; line-height: 0.95; margin-bottom: 32px;
+      opacity: 0; animation: fadeUp 0.8s 0.4s forwards;
+    }
+    .hero-title .red { color: var(--red); font-style: italic; }
+    .hero-title .gold { color: var(--gold); }
+    .hero-sub {
+      font-size: 18px; font-weight: 300; line-height: 1.7; color: rgba(255,255,255,0.7);
+      max-width: 560px; margin-bottom: 48px; opacity: 0; animation: fadeUp 0.8s 0.6s forwards;
+    }
+    .hero-actions { display: flex; gap: 16px; flex-wrap: wrap; opacity: 0; animation: fadeUp 0.8s 0.8s forwards; }
+    .btn-primary {
+      background: var(--red); color: var(--white); padding: 16px 32px; border: none;
+      cursor: pointer; font-family: 'Barlow Condensed', sans-serif; font-size: 14px;
+      font-weight: 700; letter-spacing: 2px; text-transform: uppercase; text-decoration: none;
+      display: inline-flex; align-items: center; gap: 8px; transition: all 0.2s;
+    }
+    .btn-primary:hover { background: var(--red-light); transform: translateY(-2px); }
+    .btn-outline {
+      background: transparent; color: var(--white); padding: 16px 32px;
+      border: 1px solid rgba(255,255,255,0.3); cursor: pointer;
+      font-family: 'Barlow Condensed', sans-serif; font-size: 14px; font-weight: 700;
+      letter-spacing: 2px; text-transform: uppercase; text-decoration: none;
+      display: inline-flex; align-items: center; gap: 8px; transition: all 0.2s;
+    }
+    .btn-outline:hover { border-color: var(--gold); color: var(--gold); transform: translateY(-2px); }
+    .hero-stats {
+      position: absolute; bottom: 60px; right: 40px;
+      display: flex; gap: 48px; opacity: 0; animation: fadeUp 0.8s 1s forwards;
+    }
+    .hero-stat { text-align: right; }
+    .hero-stat-num { font-family: 'Playfair Display', serif; font-size: 36px; font-weight: 700; color: var(--gold); display: block; }
+    .hero-stat-label { font-size: 11px; font-weight: 600; letter-spacing: 2px; color: var(--gray); text-transform: uppercase; }
+
+    /* SECTIONS */
+    section { padding: 100px 40px; }
+    .section-label {
+      font-family: 'Barlow Condensed', sans-serif; font-size: 11px; font-weight: 700;
+      letter-spacing: 4px; color: var(--gold); text-transform: uppercase; margin-bottom: 16px;
+      display: flex; align-items: center; gap: 12px;
+    }
+    .section-label::before { content: ''; width: 30px; height: 1px; background: var(--gold); }
+    .section-title { font-family: 'Playfair Display', serif; font-size: clamp(36px, 5vw, 56px); font-weight: 900; line-height: 1.1; margin-bottom: 20px; }
+    .section-sub { font-size: 16px; font-weight: 300; line-height: 1.7; color: rgba(255,255,255,0.6); max-width: 560px; margin-bottom: 60px; }
+
+    /* PILLARS */
+    #pillars { background: linear-gradient(180deg, #0D0D1F 0%, var(--navy) 100%); }
+    .pillars-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; }
+    .pillar-card {
+      background: rgba(255,255,255,0.03); padding: 40px 32px;
+      border: 1px solid var(--border); position: relative; overflow: hidden; transition: all 0.3s;
+    }
+    .pillar-card::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+      background: var(--red); transform: scaleX(0); transform-origin: left; transition: transform 0.3s;
+    }
+    .pillar-card:hover { background: rgba(255,255,255,0.06); transform: translateY(-4px); }
+    .pillar-card:hover::before { transform: scaleX(1); }
+    .pillar-num { font-family: 'Playfair Display', serif; font-size: 72px; font-weight: 900; color: rgba(255,255,255,0.04); position: absolute; top: 12px; right: 20px; line-height: 1; }
+    .pillar-icon { font-size: 36px; margin-bottom: 20px; display: block; }
+    .pillar-name { font-family: 'Barlow Condensed', sans-serif; font-size: 20px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 12px; }
+    .pillar-desc { font-size: 14px; font-weight: 300; line-height: 1.6; color: rgba(255,255,255,0.55); }
+    .pillar-new { display: inline-block; margin-top: 16px; background: var(--gold); color: var(--navy); font-size: 9px; font-weight: 700; letter-spacing: 2px; padding: 3px 8px; text-transform: uppercase; }
+
+    /* MARKET */
+    #market { background: var(--red); position: relative; overflow: hidden; }
+    #market .section-label { color: rgba(255,255,255,0.7); }
+    #market .section-label::before { background: rgba(255,255,255,0.5); }
+    .market-pattern { position: absolute; inset: 0; opacity: 0.05; background-image: repeating-linear-gradient(45deg, #fff 0px, #fff 1px, transparent 0px, transparent 50%); background-size: 20px 20px; }
+    .market-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px; position: relative; }
+    .market-stat { background: rgba(0,0,0,0.2); padding: 40px 32px; text-align: center; }
+    .market-stat-num { font-family: 'Playfair Display', serif; font-size: 52px; font-weight: 900; color: var(--white); display: block; line-height: 1; margin-bottom: 8px; }
+    .market-stat-label { font-size: 12px; letter-spacing: 1px; color: rgba(255,255,255,0.7); line-height: 1.4; }
+
+    /* CONTENT FEED */
+    #content { background: #0D0D1F; }
+    .feed-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    .feed-card { background: var(--navy-light, #252545); border: 1px solid var(--border); overflow: hidden; transition: all 0.3s; cursor: pointer; }
+    .feed-card:hover { border-color: var(--red); transform: translateY(-6px); }
+    .feed-thumb { height: 180px; position: relative; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+    .feed-thumb-text { position: relative; z-index: 1; padding: 20px; text-align: center; font-family: 'Playfair Display', serif; font-size: 18px; font-weight: 700; line-height: 1.3; color: var(--white); text-shadow: 0 2px 8px rgba(0,0,0,0.5); }
+    .feed-play { position: absolute; z-index: 2; width: 48px; height: 48px; border-radius: 50%; background: rgba(255,255,255,0.15); backdrop-filter: blur(8px); display: flex; align-items: center; justify-content: center; font-size: 18px; border: 1px solid rgba(255,255,255,0.3); }
+    .feed-body { padding: 20px 24px 24px; }
+    .feed-platform { font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); margin-bottom: 8px; }
+    .feed-title { font-family: 'Barlow Condensed', sans-serif; font-size: 18px; font-weight: 700; margin-bottom: 10px; line-height: 1.3; }
+    .feed-stats { font-size: 12px; color: var(--gray); }
+    .feed-center { text-align: center; margin-top: 48px; }
+
+    /* AFFILIATES */
+    #affiliates { background: var(--navy); border-top: 1px solid var(--border); }
+    .affiliates-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; margin-bottom: 48px; }
+    .affiliate-card {
+      background: rgba(255,255,255,0.03); border: 1px solid var(--border); padding: 32px;
+      display: flex; align-items: center; gap: 24px; transition: all 0.3s; text-decoration: none; color: var(--white);
+    }
+    .affiliate-card:hover { border-color: var(--gold); background: rgba(243,156,18,0.05); transform: translateY(-3px); }
+    .affiliate-icon { width: 64px; height: 64px; flex-shrink: 0; border-radius: 50%; background: rgba(255,255,255,0.08); display: flex; align-items: center; justify-content: center; font-size: 28px; }
+    .affiliate-info { flex: 1; }
+    .affiliate-name { font-family: 'Barlow Condensed', sans-serif; font-size: 20px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 6px; }
+    .affiliate-desc { font-size: 13px; color: var(--gray); line-height: 1.5; }
+    .affiliate-badge { font-size: 10px; font-weight: 700; letter-spacing: 2px; padding: 4px 10px; text-transform: uppercase; margin-top: 10px; display: inline-block; }
+    .badge-live { background: rgba(26,122,74,0.2); color: #4CAF82; }
+    .badge-coming { background: rgba(243,156,18,0.15); color: var(--gold); }
+    .affiliate-arrow { font-size: 24px; color: var(--gray); }
+
+    /* ABOUT */
+    #about { background: var(--off-white); color: var(--navy); }
+    #about .section-label { color: var(--red); }
+    #about .section-label::before { background: var(--red); }
+    #about .section-title { color: var(--navy); }
+    .about-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+    .about-text p { font-size: 16px; font-weight: 300; line-height: 1.8; color: rgba(26,26,46,0.7); margin-bottom: 20px; }
+    .about-quote { border-left: 4px solid var(--red); padding-left: 24px; margin: 32px 0; font-family: 'Playfair Display', serif; font-size: 20px; font-style: italic; line-height: 1.5; color: var(--navy); }
+    .about-cards { display: flex; flex-direction: column; gap: 16px; }
+    .about-card { background: var(--navy); color: var(--white); padding: 28px 32px; display: flex; align-items: flex-start; gap: 20px; }
+    .about-card-icon { width: 48px; height: 48px; flex-shrink: 0; background: var(--red); display: flex; align-items: center; justify-content: center; font-size: 22px; }
+    .about-card-title { font-family: 'Barlow Condensed', sans-serif; font-size: 16px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 6px; }
+    .about-card-text { font-size: 13px; font-weight: 300; color: rgba(255,255,255,0.6); line-height: 1.5; }
+
+    /* CONTACT */
+    #contact { background: #0D0D1F; }
+    .contact-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
+    .contact-form { display: flex; flex-direction: column; gap: 16px; }
+    .contact-input { background: rgba(255,255,255,0.05); border: 1px solid var(--border); color: var(--white); padding: 16px 20px; font-family: 'Barlow', sans-serif; font-size: 15px; outline: none; transition: border 0.2s; width: 100%; }
+    .contact-input:focus { border-color: var(--gold); }
+    .contact-input::placeholder { color: var(--gray); }
+    textarea.contact-input { resize: vertical; min-height: 120px; }
+    .contact-info { display: flex; flex-direction: column; gap: 28px; }
+    .contact-item { display: flex; align-items: flex-start; gap: 20px; }
+    .contact-item-icon { width: 48px; height: 48px; flex-shrink: 0; background: rgba(192,57,43,0.15); border: 1px solid rgba(192,57,43,0.3); display: flex; align-items: center; justify-content: center; font-size: 20px; }
+    .contact-item-label { font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); margin-bottom: 6px; }
+    .contact-item-value { font-size: 15px; color: rgba(255,255,255,0.8); }
+    .social-links { display: flex; gap: 12px; margin-top: 16px; }
+    .social-link { width: 44px; height: 44px; background: rgba(255,255,255,0.05); border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; font-size: 18px; text-decoration: none; color: var(--white); transition: all 0.2s; }
+    .social-link:hover { background: var(--red); border-color: var(--red); }
+    .disclaimer { font-size: 12px; color: rgba(255,255,255,0.3); line-height: 1.6; margin-top: 8px; }
+
+    /* FOOTER */
+    footer { background: #060610; padding: 60px 40px 40px; border-top: 1px solid var(--border); }
+    .footer-top { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 60px; margin-bottom: 60px; }
+    .footer-brand-name { font-family: 'Playfair Display', serif; font-size: 32px; font-weight: 900; margin-bottom: 16px; }
+    .footer-brand-name span { color: var(--gold); font-style: italic; }
+    .footer-tagline { font-size: 13px; color: var(--gray); line-height: 1.7; margin-bottom: 24px; }
+    .footer-col-title { font-family: 'Barlow Condensed', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); margin-bottom: 20px; }
+    .footer-links { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .footer-links a { font-size: 14px; color: var(--gray); text-decoration: none; transition: color 0.2s; }
+    .footer-links a:hover { color: var(--white); }
+    .footer-bottom { border-top: 1px solid var(--border); padding-top: 32px; display: flex; justify-content: space-between; align-items: center; }
+    .footer-copy { font-size: 13px; color: var(--gray); }
+    .footer-disc { font-size: 11px; color: rgba(255,255,255,0.25); max-width: 500px; text-align: right; line-height: 1.5; }
+
+    /* ANIMATIONS */
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+    .fade-in { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+    /* MOBILE */
+    @media (max-width: 768px) {
+      nav { padding: 0 24px; }
+      .nav-links { display: none; }
+      .nav-links.open { display: flex; flex-direction: column; position: absolute; top: 72px; left: 0; right: 0; background: rgba(26,26,46,0.98); padding: 24px; gap: 16px; border-bottom: 1px solid var(--border); }
+      .hamburger { display: flex; }
+      .hero { padding: 100px 24px 80px; }
+      .hero-stats { position: static; margin-top: 48px; flex-wrap: wrap; gap: 24px; }
+      .hero-stat { text-align: left; }
+      section { padding: 70px 24px; }
+      .pillars-grid, .feed-grid, .affiliates-grid, .market-grid { grid-template-columns: 1fr; }
+      .market-grid { grid-template-columns: repeat(2,1fr); }
+      .about-inner, .contact-inner { grid-template-columns: 1fr; gap: 40px; }
+      .footer-top { grid-template-columns: 1fr 1fr; gap: 40px; }
+      .footer-bottom { flex-direction: column; gap: 16px; text-align: center; }
+      .footer-disc { text-align: center; }
+      footer { padding: 60px 24px 40px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a class="nav-logo" href="#home">
+    <div class="nav-rr">
+      <svg viewBox="0 0 44 44" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="22" cy="22" r="22" fill="#1A1A2E"/>
+        <circle cx="22" cy="22" r="20" fill="none" stroke="#F39C12" stroke-width="1.5"/>
+        <text x="22" y="19" text-anchor="middle" font-family="Georgia, serif" font-size="13" font-weight="900" fill="#C0392B" letter-spacing="0">RR</text>
+        <text x="22" y="30" text-anchor="middle" font-family="Georgia, serif" font-size="5.5" font-weight="400" fill="#F39C12" letter-spacing="2">RUTARICA</text>
+      </svg>
+    </div>
+    <span class="nav-brand">RutaRica</span>
+  </a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#pillars">Pillars</a></li>
+    <li><a href="#content">Content</a></li>
+    <li><a href="#affiliates">Affiliates</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#contact" class="nav-cta">Collab</a></li>
+  </ul>
+  <div class="hamburger" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-content">
+    <div class="eyebrow">Bilingual · Bold · First-Gen</div>
+    <h1 class="hero-title">
+      Travel <span class="red">Bold.</span><br>
+      Build <span class="gold">Wealth.</span><br>
+      Vive Rico.
+    </h1>
+    <p class="hero-sub">The go-to bilingual destination for Latino professionals who refuse to choose between grinding hard and living well. Travel smarter, stack points, build real wealth — en dos idiomas.</p>
+    <div class="hero-actions">
+      <a href="#content" class="btn-primary">Watch the Content ↓</a>
+      <a href="https://beacons.ai/rutarica" target="_blank" class="btn-outline">Road Warrior Gear →</a>
+    </div>
+  </div>
+  <div class="hero-stats">
+    <div class="hero-stat">
+      <span class="hero-stat-num">1,500+</span>
+      <span class="hero-stat-label">YouTube Views · Week 1</span>
+    </div>
+    <div class="hero-stat">
+      <span class="hero-stat-num">6</span>
+      <span class="hero-stat-label">Content Pillars</span>
+    </div>
+    <div class="hero-stat">
+      <span class="hero-stat-num">4</span>
+      <span class="hero-stat-label">Platforms Active</span>
+    </div>
+  </div>
+</section>
+
+<!-- PILLARS -->
+<section id="pillars">
+  <div class="section-label fade-in">Content Strategy</div>
+  <h2 class="section-title fade-in">Six Pillars.<br>One Community.</h2>
+  <p class="section-sub fade-in">Every post lives inside a proven content architecture built to educate, inspire, and convert the ambitious Latino professional.</p>
+  <div class="pillars-grid">
+    <div class="pillar-card fade-in">
+      <div class="pillar-num">01</div>
+      <span class="pillar-icon">🏨</span>
+      <div class="pillar-name">Road Warrior Life</div>
+      <div class="pillar-desc">Business travel elevated — hotel hacks, airport lounges, packing tips, and city guides from real corporate travel.</div>
+    </div>
+    <div class="pillar-card fade-in">
+      <div class="pillar-num">02</div>
+      <span class="pillar-icon">💳</span>
+      <div class="pillar-name">Puntos &amp; Strategy</div>
+      <div class="pillar-desc">Travel hacking for the bilingual professional — credit card points, miles optimization, and hotel loyalty programs.</div>
+    </div>
+    <div class="pillar-card fade-in">
+      <div class="pillar-num">03</div>
+      <span class="pillar-icon">🌎</span>
+      <div class="pillar-name">Ciudad Spotlight</div>
+      <div class="pillar-desc">Every business trip becomes a content opportunity — best spots, hidden gems, local food and culture.</div>
+    </div>
+    <div class="pillar-card fade-in">
+      <div class="pillar-num">04</div>
+      <span class="pillar-icon">💰</span>
+      <div class="pillar-name">Build While You Travel</div>
+      <div class="pillar-desc">Wealth building for busy professionals — investing basics, passive income, and smart money moves during travel.</div>
+    </div>
+    <div class="pillar-card fade-in">
+      <div class="pillar-num">05</div>
+      <span class="pillar-icon">🔥</span>
+      <div class="pillar-name">Motivación</div>
+      <div class="pillar-desc">Bold, aspirational, culture-driven mindset content — the highest engagement pillar, built for community.</div>
+    </div>
+    <div class="pillar-card fade-in">
+      <div class="pillar-num">06</div>
+      <span class="pillar-icon">📊</span>
+      <div class="pillar-name">Crédito &amp; Wealth</div>
+      <div class="pillar-desc">Credit literacy for Latino professionals — scores, utilization, card strategy, repair myths, and generational wealth.</div>
+      <span class="pillar-new">New Pillar</span>
+    </div>
+  </div>
+</section>
+
+<!-- MARKET -->
+<section id="market">
+  <div class="market-pattern"></div>
+  <div class="section-label fade-in">Market Opportunity</div>
+  <h2 class="section-title fade-in" style="margin-bottom:60px">An Underserved<br>$3.4 Trillion Market.</h2>
+  <div class="market-grid">
+    <div class="market-stat fade-in"><span class="market-stat-num">62M+</span><span class="market-stat-label">Latinos in the U.S.</span></div>
+    <div class="market-stat fade-in"><span class="market-stat-num">$3.4T</span><span class="market-stat-label">Purchasing Power by 2026</span></div>
+    <div class="market-stat fade-in"><span class="market-stat-num">Zero</span><span class="market-stat-label">Creators Own This Niche</span></div>
+    <div class="market-stat fade-in"><span class="market-stat-num">25–45</span><span class="market-stat-label">Target Age — Peak Earners</span></div>
+  </div>
+</section>
+
+<!-- CONTENT FEED -->
+<section id="content">
+  <div class="section-label fade-in">Latest Content</div>
+  <h2 class="section-title fade-in">Real Stories.<br>Real Results.</h2>
+  <p class="section-sub fade-in">Every post comes from a real business trip, a real points redemption, a real first-gen moment. No scripts. No actors. Just the ruta.</p>
+  <div class="feed-grid">
+    <div class="feed-card fade-in">
+      <div class="feed-thumb" style="background:linear-gradient(135deg,#C0392B,#0D0D1F)">
+        <div class="feed-thumb-text">My company flew me to NYC. Here's what I did for free.</div>
+        <div class="feed-play">▶</div>
+      </div>
+      <div class="feed-body">
+        <div class="feed-platform">YouTube · 915 views</div>
+        <div class="feed-title">My company flew me to NYC. Here's what I did for free.</div>
+        <div class="feed-stats">915 views · 11 likes · 2 comments</div>
+      </div>
+    </div>
+    <div class="feed-card fade-in">
+      <div class="feed-thumb" style="background:linear-gradient(135deg,#1A1A2E,#922B21)">
+        <div class="feed-thumb-text">My company paid for the trips. My points are paying for New Orleans.</div>
+        <div class="feed-play">▶</div>
+      </div>
+      <div class="feed-body">
+        <div class="feed-platform">YouTube · 960 views</div>
+        <div class="feed-title">My company paid for the trips. My points are paying for New Orleans.</div>
+        <div class="feed-stats">960 views · 5 likes · 337 X views</div>
+      </div>
+    </div>
+    <div class="feed-card fade-in">
+      <div class="feed-thumb" style="background:linear-gradient(135deg,#922B21,#1A1A2E)">
+        <div class="feed-thumb-text">We didn't come this far to just pay bills.</div>
+        <div class="feed-play">▶</div>
+      </div>
+      <div class="feed-body">
+        <div class="feed-platform">YouTube · 143 views</div>
+        <div class="feed-title">We didn't come this far to just pay bills.</div>
+        <div class="feed-stats">143 views · 2 likes · 2 comments</div>
+      </div>
+    </div>
+    <div class="feed-card fade-in">
+      <div class="feed-thumb" style="background:linear-gradient(135deg,#A93226,#0D0D1F)">
+        <div class="feed-thumb-text">Your credit card has a secret. Most people never find it.</div>
+        <div class="feed-play">▶</div>
+      </div>
+      <div class="feed-body">
+        <div class="feed-platform">YouTube · 225 views</div>
+        <div class="feed-title">Your credit card has a secret. Most people never find it.</div>
+        <div class="feed-stats">225 views · 1 like · 76 views Post #2</div>
+      </div>
+    </div>
+    <div class="feed-card fade-in">
+      <div class="feed-thumb" style="background:linear-gradient(135deg,#0D0D1F,#C0392B)">
+        <div class="feed-thumb-text">Between meetings. Rooftop. New York City.</div>
+        <div class="feed-play">▶</div>
+      </div>
+      <div class="feed-body">
+        <div class="feed-platform">YouTube · 80+ views</div>
+        <div class="feed-title">Between meetings. Rooftop. New York City.</div>
+        <div class="feed-stats">80+ views · X: 220 impressions</div>
+      </div>
+    </div>
+    <div class="feed-card fade-in">
+      <div class="feed-thumb" style="background:linear-gradient(135deg,#7B241C,#1A1A2E)">
+        <div class="feed-thumb-text">Everyone says business travel is exhausting. I've never agreed.</div>
+        <div class="feed-play">▶</div>
+      </div>
+      <div class="feed-body">
+        <div class="feed-platform">Coming Wednesday May 13</div>
+        <div class="feed-title">Everyone says business travel is exhausting. I've never agreed.</div>
+        <div class="feed-stats">Road Warrior Life · Post #6</div>
+      </div>
+    </div>
+  </div>
+  <div class="feed-center">
+    <a href="https://www.youtube.com/@larutarica" target="_blank" class="btn-outline">Watch All Videos →</a>
+  </div>
+</section>
+
+<!-- AFFILIATES -->
+<section id="affiliates">
+  <div class="section-label fade-in">Road Warrior Resources</div>
+  <h2 class="section-title fade-in">Everything I Use.<br>All In One Place.</h2>
+  <p class="section-sub fade-in">Vetted tools, gear, and financial products personally used on every business trip. Real recommendations — not paid placements.</p>
+  <div class="affiliates-grid">
+    <a class="affiliate-card fade-in" href="https://beacons.ai/rutarica" target="_blank">
+      <div class="affiliate-icon">🏨</div>
+      <div class="affiliate-info">
+        <div class="affiliate-name">Book Hotels</div>
+        <div class="affiliate-desc">Road warrior approved hotel bookings. Every stay earns points. Every booking supports RutaRica.</div>
+        <span class="affiliate-badge badge-live">LIVE</span>
+      </div>
+      <span class="affiliate-arrow">→</span>
+    </a>
+    <a class="affiliate-card fade-in" href="https://beacons.ai/rutarica" target="_blank">
+      <div class="affiliate-icon">🎒</div>
+      <div class="affiliate-info">
+        <div class="affiliate-name">Road Warrior Essentials</div>
+        <div class="affiliate-desc">Everything I actually use on business trips — packing gear, tech, and travel tools on Amazon.</div>
+        <span class="affiliate-badge badge-live">LIVE</span>
+      </div>
+      <span class="affiliate-arrow">→</span>
+    </a>
+    <a class="affiliate-card fade-in" href="https://beacons.ai/rutarica" target="_blank">
+      <div class="affiliate-icon">💳</div>
+      <div class="affiliate-info">
+        <div class="affiliate-name">Chase Sapphire</div>
+        <div class="affiliate-desc">The premier travel card for points strategy. Apply and start earning on every business trip.</div>
+        <span class="affiliate-badge badge-coming">COMING SOON</span>
+      </div>
+      <span class="affiliate-arrow">→</span>
+    </a>
+    <a class="affiliate-card fade-in" href="https://beacons.ai/rutarica" target="_blank">
+      <div class="affiliate-icon">🌟</div>
+      <div class="affiliate-info">
+        <div class="affiliate-name">Amex Travel</div>
+        <div class="affiliate-desc">Premium card with lounge access, travel credits, and the points strategy that changes the game.</div>
+        <span class="affiliate-badge badge-coming">COMING SOON</span>
+      </div>
+      <span class="affiliate-arrow">→</span>
+    </a>
+  </div>
+  <div style="text-align:center">
+    <a href="https://beacons.ai/rutarica" target="_blank" class="btn-primary">All Resources at beacons.ai/rutarica →</a>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-inner">
+    <div class="about-text fade-in">
+      <div class="section-label">The Story</div>
+      <h2 class="section-title">We Didn't Come<br>This Far to Just<br>Pay Bills.</h2>
+      <p>RutaRica was built by a first-generation Central American operations and logistics professional who travels for work every other week — and realized nobody was talking to us about the opportunities hiding in plain sight.</p>
+      <p>The points. The lounges. The wealth you can build while your company pays for your flights. En dos idiomas.</p>
+      <div class="about-quote">"RutaRica is proof of concept for a life where your career fuels your freedom, your culture is your strength, and your content builds wealth while you sleep."</div>
+    </div>
+    <div class="about-cards fade-in">
+      <div class="about-card">
+        <div class="about-card-icon">✈️</div>
+        <div>
+          <div class="about-card-title">Real Travel Footage</div>
+          <div class="about-card-text">Business trips every other week — zero additional travel cost. Authentic content from real road warrior experiences.</div>
+        </div>
+      </div>
+      <div class="about-card">
+        <div class="about-card-icon">🗣️</div>
+        <div>
+          <div class="about-card-title">Genuine Spanglish</div>
+          <div class="about-card-text">Not performed bilingualism. A genuine lived identity as a first-generation Central American professional.</div>
+        </div>
+      </div>
+      <div class="about-card">
+        <div class="about-card-icon">⚡</div>
+        <div>
+          <div class="about-card-title">AI-Augmented Production</div>
+          <div class="about-card-text">Full content workflow compressed to 60–90 minutes per post. Consistent quality, minimal overhead.</div>
+        </div>
+      </div>
+      <div class="about-card">
+        <div class="about-card-icon">🏆</div>
+        <div>
+          <div class="about-card-title">First-Mover Advantage</div>
+          <div class="about-card-text">No major creator owns the Latino professional travel + wealth space. RutaRica is building that lane.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-inner">
+    <div class="fade-in">
+      <div class="section-label">Work With Us</div>
+      <h2 class="section-title" style="margin-bottom:20px">Let's Build<br>Something Bold.</h2>
+      <p style="color:rgba(255,255,255,0.6);font-size:15px;line-height:1.7;margin-bottom:48px">Sponsorship opportunities, brand collaborations, and partnership inquiries for brands that want authentic access to the ambitious Latino professional market.</p>
+      <div class="contact-info">
+        <div class="contact-item">
+          <div class="contact-item-icon">📧</div>
+          <div><div class="contact-item-label">Email</div><div class="contact-item-value">hola@rutarica.com</div></div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-item-icon">🌐</div>
+          <div><div class="contact-item-label">Website</div><div class="contact-item-value">rutarica.com</div></div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-item-icon">📍</div>
+          <div><div class="contact-item-label">Based In</div><div class="contact-item-value">Texas · Traveling Everywhere</div></div>
+        </div>
+        <div>
+          <div class="contact-item-label" style="margin-bottom:12px">Follow the Ruta</div>
+          <div class="social-links">
+            <a class="social-link" href="https://tiktok.com/@larutarica" target="_blank" title="TikTok">📱</a>
+            <a class="social-link" href="https://instagram.com/larutarica" target="_blank" title="Instagram">📸</a>
+            <a class="social-link" href="https://youtube.com/@larutarica" target="_blank" title="YouTube">▶️</a>
+            <a class="social-link" href="https://x.com/larutarica" target="_blank" title="X">𝕏</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="fade-in">
+      <div class="contact-form">
+        <input class="contact-input" placeholder="Your Name" type="text" />
+        <input class="contact-input" placeholder="Email Address" type="email" />
+        <input class="contact-input" placeholder="Company / Brand" type="text" />
+        <textarea class="contact-input" placeholder="Tell us about the collaboration..."></textarea>
+        <a href="mailto:hola@rutarica.com" class="btn-primary">Send Message →</a>
+        <p class="disclaimer">Not financial advice. All financial content is for educational purposes only. Consult a financial professional for your specific situation.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div>
+      <div class="footer-brand-name">Ruta<span>Rica</span></div>
+      <div class="footer-tagline">The go-to bilingual destination for Latino professionals who refuse to choose between grinding hard and living well — en dos idiomas.</div>
+      <div style="font-size:12px;color:rgba(255,255,255,0.25)">@LaRutaRica on TikTok, Instagram, YouTube &amp; X</div>
+    </div>
+    <div>
+      <div class="footer-col-title">Content</div>
+      <ul class="footer-links">
+        <li><a href="#pillars">Road Warrior Life</a></li>
+        <li><a href="#pillars">Puntos &amp; Strategy</a></li>
+        <li><a href="#pillars">Ciudad Spotlight</a></li>
+        <li><a href="#pillars">Build While You Travel</a></li>
+        <li><a href="#pillars">Motivación</a></li>
+        <li><a href="#pillars">Crédito &amp; Wealth</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">Resources</div>
+      <ul class="footer-links">
+        <li><a href="https://beacons.ai/rutarica" target="_blank">Book Hotels</a></li>
+        <li><a href="https://beacons.ai/rutarica" target="_blank">Amazon Essentials</a></li>
+        <li><a href="https://beacons.ai/rutarica" target="_blank">All Links</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">Connect</div>
+      <ul class="footer-links">
+        <li><a href="https://tiktok.com/@larutarica" target="_blank">TikTok</a></li>
+        <li><a href="https://instagram.com/larutarica" target="_blank">Instagram</a></li>
+        <li><a href="https://youtube.com/@larutarica" target="_blank">YouTube</a></li>
+        <li><a href="https://x.com/larutarica" target="_blank">X / Twitter</a></li>
+        <li><a href="mailto:hola@rutarica.com">hola@rutarica.com</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-copy">© 2026 RutaRica. All rights reserved. · Trabaja duro. Viaja smart. Vive rico.</div>
+    <div class="footer-disc">Not financial advice. Content is for educational purposes only. Consult a qualified financial professional for advice specific to your situation.</div>
+  </div>
+</footer>
+
+<script>
+  // Nav scroll
+  window.addEventListener('scroll', () => {
+    document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 40);
+  });
+
+  // Mobile menu
+  function toggleMenu() {
+    document.getElementById('navLinks').classList.toggle('open');
+  }
+
+  // Close menu on link click
+  document.querySelectorAll('.nav-links a').forEach(a => {
+    a.addEventListener('click', () => document.getElementById('navLinks').classList.remove('open'));
+  });
+
+  // Smooth scroll
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      e.preventDefault();
+      document.querySelector(a.getAttribute('href'))?.scrollIntoView({ behavior: 'smooth' });
+    });
+  });
+
+  // Fade in on scroll
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
