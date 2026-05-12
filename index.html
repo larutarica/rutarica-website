@@ -461,7 +461,7 @@
       </div>
       <span class="affiliate-arrow">→</span>
     </a>
-    <a class="affiliate-card fade-in" href="https://beacons.ai/rutarica" target="_blank">
+    <a class="affiliate-card fade-in" href="https://www.amazon.com/shop/larutarica" target="_blank">
       <div class="affiliate-icon">🎒</div>
       <div class="affiliate-info">
         <div class="affiliate-name">Road Warrior Essentials</div>
@@ -570,12 +570,19 @@
     </div>
     <div class="fade-in">
       <div class="contact-form">
-        <input class="contact-input" placeholder="Your Name" type="text" />
-        <input class="contact-input" placeholder="Email Address" type="email" />
-        <input class="contact-input" placeholder="Company / Brand" type="text" />
-        <textarea class="contact-input" placeholder="Tell us about the collaboration..."></textarea>
-        <a href="mailto:hola@rutarica.com" class="btn-primary">Send Message →</a>
-        <p class="disclaimer">Not financial advice. All financial content is for educational purposes only. Consult a financial professional for your specific situation.</p>
+        <form id="contactForm" action="https://formspree.io/f/Rxnjwrqvv" method="POST">
+          <input class="contact-input" name="name" placeholder="Your Name" type="text" required style="margin-bottom:16px;display:block" />
+          <input class="contact-input" name="email" placeholder="Email Address" type="email" required style="margin-bottom:16px;display:block" />
+          <input class="contact-input" name="company" placeholder="Company / Brand" type="text" style="margin-bottom:16px;display:block" />
+          <textarea class="contact-input" name="message" placeholder="Tell us about the collaboration..." required style="margin-bottom:16px;display:block"></textarea>
+          <input type="hidden" name="_subject" value="New RutaRica Collaboration Inquiry" />
+          <input type="hidden" name="_replyto" value="hola@rutarica.com" />
+          <button type="submit" class="btn-primary" id="submitBtn">Send Message →</button>
+        </form>
+        <div id="formSuccess" style="display:none;padding:20px;background:rgba(26,122,74,0.15);border:1px solid rgba(26,122,74,0.3);margin-top:16px">
+          <p style="color:#4CAF82;font-size:15px">✓ Message sent! We'll be in touch at hola@rutarica.com</p>
+        </div>
+        <p class="disclaimer" style="margin-top:16px">Not financial advice. All financial content is for educational purposes only. Consult a financial professional for your specific situation.</p>
       </div>
     </div>
   </div>
@@ -604,7 +611,7 @@
       <div class="footer-col-title">Resources</div>
       <ul class="footer-links">
         <li><a href="https://beacons.ai/rutarica" target="_blank">Book Hotels</a></li>
-        <li><a href="https://beacons.ai/rutarica" target="_blank">Amazon Essentials</a></li>
+        <li><a href="https://www.amazon.com/shop/larutarica" target="_blank">Amazon Essentials</a></li>
         <li><a href="https://beacons.ai/rutarica" target="_blank">All Links</a></li>
       </ul>
     </div>
@@ -640,6 +647,36 @@
   document.querySelectorAll('.nav-links a').forEach(a => {
     a.addEventListener('click', () => document.getElementById('navLinks').classList.remove('open'));
   });
+
+  // Contact form submission
+  const form = document.getElementById('contactForm');
+  if (form) {
+    form.addEventListener('submit', async function(e) {
+      e.preventDefault();
+      const btn = document.getElementById('submitBtn');
+      btn.textContent = 'Sending...';
+      btn.style.opacity = '0.7';
+      try {
+        const response = await fetch(form.action, {
+          method: 'POST',
+          body: new FormData(form),
+          headers: { 'Accept': 'application/json' }
+        });
+        if (response.ok) {
+          form.style.display = 'none';
+          document.getElementById('formSuccess').style.display = 'block';
+        } else {
+          btn.textContent = 'Send Message →';
+          btn.style.opacity = '1';
+          alert('Something went wrong. Please email hola@rutarica.com directly.');
+        }
+      } catch(err) {
+        btn.textContent = 'Send Message →';
+        btn.style.opacity = '1';
+        alert('Something went wrong. Please email hola@rutarica.com directly.');
+      }
+    });
+  }
 
   // Smooth scroll
   document.querySelectorAll('a[href^="#"]').forEach(a => {
